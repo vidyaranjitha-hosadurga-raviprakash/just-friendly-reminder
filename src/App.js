@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef } from "react";
 import { Box, Stack, Typography, Avatar } from "@mui/material";
 import useSound from "use-sound";
 import { MessageCard, AppBar, Footer } from "./components";
@@ -18,9 +18,17 @@ export const App = () => {
   console.log("App: Rendering");
   const imageBlendRef = useRef(null);
   const messageCardRef = useRef(null);
-  const [correctToggleSoundPlay] = useSound(correctSound);
-  const [incorrectToggleSoundPlay] = useSound(incorrectSound);
+  const [correctToggleSound] = useSound(correctSound);
+  const [incorrectToggleSound] = useSound(incorrectSound);
 
+  const correctToggleSoundPlay = useCallback(
+    () => correctToggleSound(),
+    [correctToggleSound]
+  );
+  const incorrectToggleSoundPlay = useCallback(
+    () => incorrectToggleSound(),
+    [incorrectToggleSound]
+  );
   useEffect(() => {
     var i = 0;
     const mixBlendModeInterval = setInterval(() => {
