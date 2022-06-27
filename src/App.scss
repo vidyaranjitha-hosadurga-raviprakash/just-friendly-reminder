@@ -1,0 +1,9 @@
+$blue: #002b65;
+.box {
+  flex-direction: column;
+  background-color: $blue;
+  background-size: cover;
+  mix-blend-mode: hard-light;
+  height: 65vh;
+  width: 100%;
+}
