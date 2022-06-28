@@ -1,8 +1,8 @@
-import React, { useCallback, useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useRef, useMemo } from "react";
 import { Box, Stack, Typography, Avatar } from "@mui/material";
 import useSound from "use-sound";
 import { MessageCard, AppBar, Footer } from "./components";
-import { msgList } from "./constants";
+import { msgList, footerProps } from "./constants";
 import {
   flexCenterColumn,
   imageBlendModeList,
@@ -29,6 +29,25 @@ export const App = () => {
     () => incorrectToggleSound(),
     [incorrectToggleSound]
   );
+
+  const appBarProps = () => (
+    <>
+      <Avatar sx={{ width: "2rem", height: "2rem" }}>
+        <Typography variant="subtitle2">PD</Typography>
+      </Avatar>
+      <Typography
+        variant="h6"
+        color="text.primary"
+        component="div"
+        sx={{ marginLeft: "0.5rem" }}
+      >
+        Friendly Reminder
+      </Typography>
+    </>
+  );
+  const getAppBarProps = useCallback(() => appBarProps(), []);
+  const memoizedFooter = useMemo(() => footerProps, []);
+
   useEffect(() => {
     var i = 0;
     const mixBlendModeInterval = setInterval(() => {
@@ -41,23 +60,6 @@ export const App = () => {
     return () => clearInterval(mixBlendModeInterval);
   }, []);
 
-  const getAppBarChildren = () => {
-    return (
-      <>
-        <Avatar sx={{ width: "2rem", height: "2rem" }}>
-          <Typography variant="subtitle2">PD</Typography>
-        </Avatar>
-        <Typography
-          variant="h6"
-          color="text.primary"
-          component="div"
-          sx={{ marginLeft: "0.5rem" }}
-        >
-          Friendly Reminder
-        </Typography>
-      </>
-    );
-  };
   return (
     <Box
       sx={{
@@ -66,7 +68,7 @@ export const App = () => {
       }}
     >
       <Stack spacing={2}>
-        <AppBar>{getAppBarChildren()}</AppBar>
+        <AppBar getAppBarProps={getAppBarProps} />
         <Box
           ref={imageBlendRef}
           className="box"
@@ -109,23 +111,7 @@ export const App = () => {
         </Box>
 
         <Box>
-          <Footer>
-            {
-              <Typography
-                color="text.secondary"
-                variant="subtitle2"
-                sx={{
-                  backgroundColor: "text.primary",
-                  borderRadius: "1rem",
-                  padding: "0.4rem 1rem",
-                  opacity: "0.5",
-                  fontWeight: "fontWeightBold",
-                }}
-              >
-                @prismatic.dreams | 2022
-              </Typography>
-            }
-          </Footer>
+          <Footer footer={memoizedFooter}></Footer>
         </Box>
       </Stack>
     </Box>

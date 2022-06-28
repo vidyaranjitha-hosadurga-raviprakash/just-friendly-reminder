@@ -5,7 +5,6 @@ Just a simple friendly reminder app for setting the right tone for a day with th
 
 **Live link : [just-friendly-reminder](https://just-friendly-reminder.netlify.app/)**
 
-
 Resources ultilised are mentioned below:
 
 1. [React Js](https://reactjs.org/)
