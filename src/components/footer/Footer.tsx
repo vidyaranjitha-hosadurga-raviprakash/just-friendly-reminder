@@ -9,7 +9,6 @@ export const Footer = React.memo(
       typography: { color = "text.primary", variant = "subtitle2", sx = {} },
     },
   }: FooterProps) => {
-    console.log("Footer: Rendering");
     return (
       <Box sx={{ ...flexCenter, margin: "1rem 0rem" }}>
         <Typography color={color} variant={variant} sx={sx}>

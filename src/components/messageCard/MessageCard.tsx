@@ -10,7 +10,6 @@ export const MessageCard = React.memo(
     correctToggleSoundPlay = () => {},
     incorrectToggleSoundPlay = () => {},
   }: MessageCardProps) => {
-    console.log("MessageCard: Rendering");
     const [msgsState, setMsgsState] = useState(messages);
     const [activeSwitch, setActiveSwitch] = useState(-1);
 

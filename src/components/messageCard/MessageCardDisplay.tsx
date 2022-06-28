@@ -12,7 +12,6 @@ type MessageCardDisplayProps = {
 };
 export const MessageCardDisplay = React.memo(
   ({ messages, changeHandler }: MessageCardDisplayProps) => {
-    console.log("MessageCardDisplay: Rendering");
     return (
       <Grid
         container

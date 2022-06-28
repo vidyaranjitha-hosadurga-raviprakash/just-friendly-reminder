@@ -15,7 +15,6 @@ import "./App.scss";
 const DURATION_MIX_BLEND_MODE = 3000;
 
 export const App = () => {
-  console.log("App: Rendering");
   const imageBlendRef = useRef(null);
   const messageCardRef = useRef(null);
   const [correctToggleSound] = useSound(correctSound);
